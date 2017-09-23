@@ -2,6 +2,11 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const svgDirs = [
+	require.resolve('antd-mobile').replace(/warn\.js$/, ''),
+	path.resolve(__dirname, './public/svgs')
+]
+
 module.exports = {
 	devtool: 'eval-source-map', //生成Source Maps,这里选择eval-source-map
 	entry: [path.resolve(__dirname, './client/index.js')], //唯一入口文件
@@ -33,8 +38,17 @@ module.exports = {
 			{
 				test: /\.(png|jpg)$/,
 				loader: 'url-loader?limit=25000'
+			},
+			{
+				test: /\.(svg)$/i,
+				loader: 'svg-sprite-loader',
+				include: svgDirs
 			}
 		]
+	},
+	resolve: {
+		extensions: ['.web.js', '.js', '.json'],
+		modules: ['node_modules', path.join(__dirname, './node_modules')]
 	},
 	plugins: [
 		new ExtractTextPlugin('css/main.css'),
