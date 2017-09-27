@@ -13,7 +13,7 @@ class Header extends Component {
 		}
 	}
 	//antd-mobile 组件的自带事件，用于控制侧边栏的显示和隐藏
-	onOpenChange() {
+	onOpenChange = () => {
 		this.setState({ open: !this.state.open })
 	}
 
@@ -47,9 +47,9 @@ class Header extends Component {
 			<div className='header'>
 				<NavBar
 					iconName={null}
-					leftContent={<FontAwesome key='bars' name="bars" onClick={this.onOpenChange.bind(this)} style={{ display: "block" }} />}
+					leftContent={<FontAwesome key='bars' name="bars" onClick={this.onOpenChange} style={{ display: "block" }} />}
 					rightContent={<Link to='/search'><FontAwesome key='search' name="search" /></Link>}
-					onLeftClick={this.onOpenChange.bind(this)}
+					onLeftClick={this.onOpenChange}
 				>
 					<Flex>
 						<Flex.Item><Link to='/music'><FontAwesome key='music' name="music" /></Link></Flex.Item>
@@ -64,7 +64,7 @@ class Header extends Component {
 					contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
 					sidebar={sidebar}
 					open={this.state.open}
-					onOpenChange={this.onOpenChange.bind(this)}
+					onOpenChange={this.onOpenChange}
 				> </Drawer>
 			</div>
 		)

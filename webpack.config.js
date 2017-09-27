@@ -9,7 +9,7 @@ const svgDirs = [
 
 module.exports = {
 	devtool: 'eval-source-map', //生成Source Maps,这里选择eval-source-map
-	entry: [path.resolve(__dirname, './client/index.js')], //唯一入口文件
+	entry: ['webpack-hot-middleware/client?reload=true', path.resolve(__dirname, './client/index.js')], //唯一入口文件
 	output: { //输出目录
 		path: __dirname + "/public", //打包后的js文件存放的目录
 		filename: 'js/bundle.js', //打包后的js文件名

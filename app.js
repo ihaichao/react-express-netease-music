@@ -9,7 +9,17 @@ const bodyParser = require('body-parser')
 const user = require('./server/routes/user')
 
 const DB_URL = 'mongodb://localhost:27017/netease-music'
+
 mongoose.connect(DB_URL, { useMongoClient: true })
+
+// 将数据写入 MongoDB
+// const MongoClient = require('mongodb').MongoClient
+// const fs = require('fs')
+// const file = "./mongoDB/rank.json"
+// const result = JSON.parse(fs.readFileSync(file))
+// MongoClient.connect(DB_URL, function (err, db) {
+//   db.collection('Rank').insert(result)
+// })
 
 //连接成功
 mongoose.connection.on('connected', function () {
@@ -62,7 +72,7 @@ app.all('*', function (req, res, next) {
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')
 
-app.use(favicon(path.join(__dirname, 'public/imgs', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'public/imgs', 'logo.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
