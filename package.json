@@ -43,6 +43,7 @@
     "file-loader": "^0.11.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "rc-form": "^1.4.8",
     "react-fontawesome": "^1.6.1",
     "style-loader": "^0.18.2",
     "svg-sprite-loader": "^3.2.5",

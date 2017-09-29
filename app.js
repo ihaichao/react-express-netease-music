@@ -12,14 +12,32 @@ const DB_URL = 'mongodb://localhost:27017/netease-music'
 
 mongoose.connect(DB_URL, { useMongoClient: true })
 
-// 将数据写入 MongoDB
-// const MongoClient = require('mongodb').MongoClient
-// const fs = require('fs')
-// const file = "./mongoDB/rank.json"
-// const result = JSON.parse(fs.readFileSync(file))
-// MongoClient.connect(DB_URL, function (err, db) {
-//   db.collection('Rank').insert(result)
-// })
+// 将数据写入 MongoDB (启动应用之后注释掉这段代码，否则会重复写入数据)
+const MongoClient = require('mongodb').MongoClient
+const fs = require('fs')
+const djprogramFile = "./mongoDB/djprogram.json"
+const djprogram = JSON.parse(fs.readFileSync(djprogramFile))
+const mvFile = "./mongoDB/mv.json"
+const mv = JSON.parse(fs.readFileSync(mvFile))
+const personalFile = "./mongoDB/personal.json"
+const personal = JSON.parse(fs.readFileSync(personalFile))
+const playlistsFile = "./mongoDB/playlists.json"
+const playlists = JSON.parse(fs.readFileSync(playlistsFile))
+const privateContentFile = "./mongoDB/privateContent.json"
+const privateContent = JSON.parse(fs.readFileSync(privateContentFile))
+const rankFile = "./mongoDB/rank.json"
+const rank = JSON.parse(fs.readFileSync(rankFile))
+const songsFile = "./mongoDB/songs.json"
+const songs = JSON.parse(fs.readFileSync(songsFile))
+MongoClient.connect(DB_URL, function (err, db) {
+  db.collection('djprogram').insert(djprogram)
+  db.collection('MV').insert(mv)
+  db.collection('personalized').insert(personal)
+  db.collection('PlayList').insert(playlists)
+  db.collection('privatecontent').insert(privateContent)
+  db.collection('Rank').insert(rank)
+  db.collection('Songs').insert(songs)
+})
 
 //连接成功
 mongoose.connection.on('connected', function () {

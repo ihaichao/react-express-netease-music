@@ -4,23 +4,23 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const svgDirs = [
 	require.resolve('antd-mobile').replace(/warn\.js$/, ''),
-	path.resolve(__dirname, './public/svgs')
+	path.resolve(__dirname, '/public/svgs')
 ]
 
 module.exports = {
-	devtool: 'eval-source-map', //生成Source Maps,这里选择eval-source-map
-	entry: ['webpack-hot-middleware/client?reload=true', path.resolve(__dirname, './client/index.js')], //唯一入口文件
+	devtool: 'eval-source-map', // 生成Source Map,这里选择eval-source-map
+	entry: ['webpack-hot-middleware/client?reload=true', path.resolve(__dirname, './client/index.js')], // 唯一入口文件
 	output: { //输出目录
-		path: __dirname + "/public", //打包后的js文件存放的目录
-		filename: 'js/bundle.js', //打包后的js文件名
+		path: __dirname + "/public", // 打包后的js文件存放的目录
+		filename: 'js/bundle.js', // 打包后的js文件名
 		publicPath: 'http://127.0.0.1:3000/'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.(js|jsx)?$/,
-				exclude: /node_modules/, //屏蔽不需要处理的文件（文件夹）（可选）
-				loader: 'babel-loader',//es6转es5
+				exclude: /node_modules/,
+				loader: 'babel-loader',
 			},
 			{
 				test: /\.css$/,
@@ -52,11 +52,11 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin('css/main.css'),
-		new CompressionWebpackPlugin({ //gzip 压缩
+		new CompressionWebpackPlugin({
 			asset: '[path].gz[query]',
 			algorithm: 'gzip',
 			test: new RegExp(
-				'\\.(js|css)$'    //压缩 js 与 css
+				'\\.(js|css)$'   
 			),
 			threshold: 10240,
 			minRatio: 0.8
