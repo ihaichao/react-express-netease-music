@@ -21,7 +21,7 @@ use netease-music
 
 安装依赖  
 ```bash
-yarn install
+yarn install
 ```
 
 启动应用
